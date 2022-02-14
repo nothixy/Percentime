@@ -107,235 +107,281 @@ class _MyApp2 extends State<MyApp2> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double len = min(width, height) * .90;
+    double strokeWidth = 1/100 * len;
     return MaterialApp(
         home: Scaffold(
-          body: Center(
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showInfo = !showInfo;
-                    });
-                  },
-                  child:
-                  Align(
+          body: InkWell(
+                onTap: () {
+                  setState(() {
+                    showInfo = !showInfo;
+                  });
+                },
+                child: Center(
                     child: Stack(
                       children: [
-                        Center(
-                          child : SizedBox(
-                              width: 7/7 * len,
-                              height: 7/7 * len,
-                              child: Stack(
-                                  children: <Widget> [
-                                    Center(
-                                      child: SizedBox(
-                                        width: 7/7 * len,
-                                        height: 7/7 * len,
-                                        child: CircularProgressIndicator(
-                                          key : const Key('progress7'),
-                                          strokeWidth: 1/140 * len,
-                                          color: const Color.fromARGB(255, 255, 0, 0),
-                                          value: percentageSecond,
-                                          semanticsLabel: 'Linear progress indicator',
-                                        ),
-                                      ),
+                        Visibility(
+                          visible: !showInfo,
+                          child: Stack(
+                            children: [
+                              Center(
+                                child: SizedBox(
+                                  width: 7/7 * len,
+                                  height: 7/7 * len,
+                                  child: SizedBox(
+                                    width: 7/7 * len,
+                                    height: 7/7 * len,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: strokeWidth,
+                                      color: const Color.fromARGB(255, 255, 0, 0),
+                                      value: percentageSecond,
                                     ),
-                                    Visibility (
-                                      visible: showInfo,
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Text("Hour : " + ((percentageSecond*10000).round()/100).toString() + "%"),
-                                      ),
-                                    )
-                                  ]
-                              )
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: 6/7 * len,
+                                  height: 6/7 * len,
+                                  child: SizedBox(
+                                    width: 6/7 * len,
+                                    height: 6/7 * len,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: strokeWidth,
+                                      color: const Color.fromARGB(255, 255, 0, 255),
+                                      value: percentageMinute,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: 5/7 * len,
+                                  height: 5/7 * len,
+                                  child: SizedBox(
+                                    width: 5/7 * len,
+                                    height: 5/7 * len,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: strokeWidth,
+                                      color: const Color.fromARGB(255, 0, 0, 255),
+                                      value: percentageHour,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: 4/7 * len,
+                                  height: 4/7 * len,
+                                  child: SizedBox(
+                                    width: 4/7 * len,
+                                    height: 4/7 * len,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: strokeWidth,
+                                      color: const Color.fromARGB(255, 0, 255, 255),
+                                      value: percentageDay,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: 3/7 * len,
+                                  height: 3/7 * len,
+                                  child: SizedBox(
+                                    width: 3/7 * len,
+                                    height: 3/7 * len,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: strokeWidth,
+                                      color: const Color.fromARGB(255, 0, 255, 0),
+                                      value: percentageWeek,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: 2/7 * len,
+                                  height: 2/7 * len,
+                                  child: SizedBox(
+                                    width: 2/7 * len,
+                                    height: 2/7 * len,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: strokeWidth,
+                                      color: const Color.fromARGB(255, 255, 255, 0),
+                                      value: percentageMonth,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: 1/7 * len,
+                                  height: 1/7 * len,
+                                  child: SizedBox(
+                                    width: 1/7 * len,
+                                    height: 1/7 * len,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: strokeWidth,
+                                      color: const Color.fromARGB(255, 255, 0, 0),
+                                      value: percentageYear,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Center(
-                          child : SizedBox(
-                              width: 6/7 * len,
-                              height: 6/7 * len,
-                              child: Stack(
-                                  children: <Widget> [
-                                    Center(
-                                      child: SizedBox(
-                                        width: 6/7 * len,
-                                        height: 6/7 * len,
-                                        child: CircularProgressIndicator(
-                                          key : const Key('progress7'),
-                                          strokeWidth: 1/140 * len,
-                                          color: const Color.fromARGB(255, 255, 0, 255),
-                                          value: percentageMinute,
-                                          semanticsLabel: 'Linear progress indicator',
+                        Visibility(
+                          visible: showInfo,
+                          child: Center(
+                            child: SizedBox(
+                              width: len,
+                              height: len,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 1/7 * len,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 100,
+                                          child: Text("Second : " + (((percentageSecond*100).round())).toInt().toString() + "%")
                                         ),
-                                      ),
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                            minHeight: 1/100 * len,
+                                            color: const Color.fromARGB(255, 255, 0, 0),
+                                            backgroundColor: const Color.fromARGB(50, 255, 0, 0),
+                                            value: percentageSecond
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Visibility (
-                                      visible: showInfo,
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Text("Minute : " + ((percentageMinute*10000).round()/100).toString() + "%"),
-                                      ),
-                                    )
-                                  ]
-                              )
-                          ),
-                        ),
-                        Center(
-                          child : SizedBox(
-                              width: 5/7 * len,
-                              height: 5/7 * len,
-                              child: Stack(
-                                  children: <Widget> [
-                                    Center(
-                                      child: SizedBox(
-                                        width: 5/7 * len,
-                                        height: 5/7 * len,
-                                        child: CircularProgressIndicator(
-                                          key : const Key('progress7'),
-                                          strokeWidth: 1/140 * len,
-                                          color: const Color.fromARGB(255, 0, 0, 255),
-                                          value: percentageHour,
-                                          semanticsLabel: 'Linear progress indicator',
+                                  ),
+                                  SizedBox(
+                                    height: 1/7 * len,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                            width: 100,
+                                            child: Text("Minute : " + (((percentageMinute*100).round())).toInt().toString() + "%")
                                         ),
-                                      ),
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                              minHeight: 1/100 * len,
+                                              color: const Color.fromARGB(255, 255, 0, 255),
+                                              backgroundColor: const Color.fromARGB(50, 255, 0, 255),
+                                              value: percentageMinute
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Visibility (
-                                      visible: showInfo,
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Text("Hour : " + ((percentageHour*10000).round()/100).toString() + "%"),
-                                      ),
-                                    )
-                                  ]
-                              )
-                          ),
-                        ),
-                        Center(
-                          child : SizedBox(
-                              width: 4/7 * len,
-                              height: 4/7 * len,
-                              child: Stack(
-                                  children: <Widget> [
-                                    Center(
-                                      child: SizedBox(
-                                        width: 4/7 * len,
-                                        height: 4/7 * len,
-                                        child: CircularProgressIndicator(
-                                          key : const Key('progress7'),
-                                          strokeWidth: 1/140 * len,
-                                          color: const Color.fromARGB(255, 0, 255, 255),
-                                          value: percentageDay,
-                                          semanticsLabel: 'Linear progress indicator',
+                                  ),
+                                  SizedBox(
+                                    height: 1/7 * len,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                            width: 100,
+                                            child: Text("Hour : " + (((percentageHour*100).round())).toInt().toString() + "%")
                                         ),
-                                      ),
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                              minHeight: 1/100 * len,
+                                              color: const Color.fromARGB(255, 0, 0, 255),
+                                              backgroundColor: const Color.fromARGB(50, 0, 0, 255),
+                                              value: percentageHour
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Visibility (
-                                      visible: showInfo,
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Text("Day : " + ((percentageDay*10000).round()/100).toString() + "%"),
-                                      ),
-                                    )
-                                  ]
-                              )
-                          ),
-                        ),
-                        Center(
-                          child : SizedBox(
-                              width: 3/7 * len,
-                              height: 3/7 * len,
-                              child: Stack(
-                                  children: <Widget> [
-                                    Center(
-                                      child: SizedBox(
-                                        width: 3/7 * len,
-                                        height: 3/7 * len,
-                                        child: CircularProgressIndicator(
-                                          key : const Key('progress7'),
-                                          strokeWidth: 1/140 * len,
-                                          color: const Color.fromARGB(255, 0, 255, 0),
-                                          value: percentageWeek,
-                                          semanticsLabel: 'Linear progress indicator',
+                                  ),
+                                  SizedBox(
+                                    height: 1/7 * len,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                            width: 100,
+                                            child: Text("Day : " + (((percentageDay*100).round())).toInt().toString() + "%")
                                         ),
-                                      ),
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                              minHeight: 1/100 * len,
+                                              color: const Color.fromARGB(255, 0, 255, 255),
+                                              backgroundColor: const Color.fromARGB(50, 0, 255, 255),
+                                              value: percentageDay
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Visibility (
-                                      visible: showInfo,
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Text("Week : " + ((percentageWeek*10000).round()/100).toString() + "%"),
-                                      ),
-                                    )
-                                  ]
-                              )
-                          ),
-                        ),
-                        Center(
-                          child : SizedBox(
-                              width: 2/7 * len,
-                              height: 2/7 * len,
-                              child: Stack(
-                                  children: <Widget> [
-                                    Center(
-                                      child: SizedBox(
-                                        width: 2/7 * len,
-                                        height: 2/7 * len,
-                                        child: CircularProgressIndicator(
-                                          key : const Key('progress7'),
-                                          strokeWidth: 1/140 * len,
-                                          color: const Color.fromARGB(255, 255, 255, 0),
-                                          value: percentageMonth,
-                                          semanticsLabel: 'Linear progress indicator',
+                                  ),
+                                  SizedBox(
+                                    height: 1/7 * len,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                            width: 100,
+                                            child: Text("Week : " + (((percentageWeek*100).round())).toInt().toString() + "%")
                                         ),
-                                      ),
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                              minHeight: 1/100 * len,
+                                              color: const Color.fromARGB(255, 0, 255, 0),
+                                              backgroundColor: const Color.fromARGB(50, 0, 255, 0),
+                                              value: percentageWeek
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Visibility (
-                                      visible: showInfo,
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Text("Month : " + ((percentageMonth*10000).round()/100).toString() + "%"),
-                                      ),
-                                    )
-                                  ]
-                              )
-                          ),
-                        ),
-                        Center(
-                          child : SizedBox(
-                              width: 1/7 * len,
-                              height: 1/7 * len,
-                              child: Stack(
-                                  children: <Widget> [
-                                    Center(
-                                      child: SizedBox(
-                                        width: 1/7 * len,
-                                        height: 1/7 * len,
-                                        child: CircularProgressIndicator(
-                                          key : const Key('progress7'),
-                                          strokeWidth: 1/140 * len,
-                                          color: const Color.fromARGB(255, 255, 0, 0),
-                                          value: percentageYear,
-                                          semanticsLabel: 'Linear progress indicator',
+                                  ),
+                                  SizedBox(
+                                    height: 1/7 * len,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                            width: 100,
+                                            child: Text("Month : " + (((percentageMonth*100).round())).toInt().toString() + "%")
                                         ),
-                                      ),
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                              minHeight: 1/100 * len,
+                                              color: const Color.fromARGB(255, 255, 255, 0),
+                                              backgroundColor: const Color.fromARGB(50, 255, 255, 0),
+                                              value: percentageMonth
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Visibility (
-                                      visible: showInfo,
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Text("Year : " + ((percentageYear*10000).round()/100).toString() + "%"),
-                                      ),
-                                    )
-                                  ]
-                              )
-                          ),
-                        ),
-                      ],
+                                  ),
+                                  SizedBox(
+                                    height: 1/7 * len,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                            width: 100,
+                                            child: Text("Year : " + (((percentageYear*100).round())).toInt().toString() + "%")
+                                        ),
+                                        Expanded(
+                                          child: LinearProgressIndicator(
+                                              minHeight: 1/100 * len,
+                                              color: const Color.fromARGB(255, 255, 0, 0),
+                                              backgroundColor: const Color.fromARGB(50, 255, 0, 0),
+                                              value: percentageYear
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          )
+                        )
+                      ]
                     ),
-                  )
+                )
               )
           ),
-        )
     );
   }
 }
