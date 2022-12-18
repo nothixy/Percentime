@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wearable_rotary/wearable_rotary.dart';
 import 'package:wear/wear.dart';
@@ -163,27 +161,45 @@ class _MyApp2 extends State<MyApp2> {
                             children: [
                               Center(
                                 child: SizedBox(
-                                  width: ttl/ttl * len,
-                                  height: ttl/ttl * len,
+                                  width: ttl/ttl * len + 4 * strokeWidth,
+                                  height: ttl/ttl * len + 4 * strokeWidth,
                                   child: SizedBox(
-                                      width: ttl/ttl * len,
-                                      height: ttl/ttl * len,
+                                      width: ttl/ttl * len + 4 * strokeWidth,
+                                      height: ttl/ttl * len + 4 * strokeWidth,
                                       child: Stack(
                                         children: <Widget?>[
-                                          Positioned.fill(
+                                          // Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                          //     color: const Color.fromARGB(255, 255, 0, 0),
+                                          //     value: percentageSecond,
+                                          //   ),
+                                          // ),
+                                          // mode == WearMode.ambient ? Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
+                                          //     color: Colors.black,
+                                          //     value: (percentageSecond * 100 - len/(pi*(ttl)/ttl*len/2)) % 100 / 100,
+                                          //   ),
+                                          // ) : null,
+                                          mode == WearMode.ambient ? Positioned(
+                                            left: cos((percentageSecond - 0.25) * 2 * pi) * (len / 2) + len / 2,
+                                            top: sin((percentageSecond - 0.25) * 2 * pi) * (len / 2) + len / 2,
+                                            child: Container(
+                                              width: 4 * strokeWidth,
+                                              height: 4 * strokeWidth,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(50),
+                                                color: const Color.fromARGB(255, 255, 0, 0),
+                                              ),
+                                            ),
+                                          ) : Positioned.fill(
                                             child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                              strokeWidth: strokeWidth,
                                               color: const Color.fromARGB(255, 255, 0, 0),
                                               value: percentageSecond,
                                             ),
                                           ),
-                                          mode == WearMode.ambient ? Positioned.fill(
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
-                                              color: Colors.black,
-                                              value: (percentageSecond * 100 - len/(pi*(ttl)/ttl*len/2)) % 100 / 100,
-                                            ),
-                                          ) : null,
                                         ].whereType<Widget>().toList(),
                                       )
                                   ),
@@ -191,27 +207,45 @@ class _MyApp2 extends State<MyApp2> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: (ttl-1)/ttl * len,
-                                  height: (ttl-1)/ttl * len,
+                                  width: (ttl-1)/ttl * len + 4 * strokeWidth,
+                                  height: (ttl-1)/ttl * len + 4 * strokeWidth,
                                   child: SizedBox(
-                                      width: (ttl-1)/ttl * len,
-                                      height: (ttl-1)/ttl * len,
+                                      width: (ttl-1)/ttl * len + 4 * strokeWidth,
+                                      height: (ttl-1)/ttl * len + 4 * strokeWidth,
                                       child: Stack(
                                         children: <Widget?>[
-                                          Positioned.fill(
+                                          // Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                          //     color: const Color.fromARGB(255, 255, 0, 255),
+                                          //     value: percentageMinute,
+                                          //   ),
+                                          // ),
+                                          // mode == WearMode.ambient ? Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
+                                          //     color: Colors.black,
+                                          //     value: (percentageMinute * 100 - len/(pi*(ttl-1)/ttl*len/2)) % 100 / 100,
+                                          //   ),
+                                          // ) : null,
+                                          mode == WearMode.ambient ? Positioned(
+                                            left: cos((percentageMinute - 0.25) * 2 * pi) * ((ttl - 1) / ttl * len / 2) + ((ttl - 1) / ttl * len) / 2,
+                                            top: sin((percentageMinute - 0.25) * 2 * pi) * ((ttl - 1) / ttl * len / 2) + ((ttl - 1) / ttl * len) / 2,
+                                            child: Container(
+                                              width: 4 * strokeWidth,
+                                              height: 4 * strokeWidth,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(50),
+                                                color: const Color.fromARGB(255, 255, 0, 255),
+                                              ),
+                                            ),
+                                          ) : Positioned.fill(
                                             child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                              strokeWidth: strokeWidth,
                                               color: const Color.fromARGB(255, 255, 0, 255),
                                               value: percentageMinute,
                                             ),
                                           ),
-                                          mode == WearMode.ambient ? Positioned.fill(
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
-                                              color: Colors.black,
-                                              value: (percentageMinute * 100 - len/(pi*(ttl-1)/ttl*len/2)) % 100 / 100,
-                                            ),
-                                          ) : null,
                                         ].whereType<Widget>().toList(),
                                       )
                                   ),
@@ -219,27 +253,45 @@ class _MyApp2 extends State<MyApp2> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: (ttl-2)/ttl * len,
-                                  height: (ttl-2)/ttl * len,
+                                  width: (ttl-2)/ttl * len + 4 * strokeWidth,
+                                  height: (ttl-2)/ttl * len + 4 * strokeWidth,
                                   child: SizedBox(
-                                      width: (ttl-2)/ttl * len,
-                                      height: (ttl-2)/ttl * len,
+                                      width: (ttl-2)/ttl * len + 4 * strokeWidth,
+                                      height: (ttl-2)/ttl * len + 4 * strokeWidth,
                                       child: Stack(
                                         children: <Widget?>[
-                                          Positioned.fill(
+                                          // Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                          //     color: const Color.fromARGB(255, 0, 0, 255),
+                                          //     value: percentageHour,
+                                          //   ),
+                                          // ),
+                                          // mode == WearMode.ambient ? Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
+                                          //     color: Colors.black,
+                                          //     value: (percentageHour * 100 - len/(pi*(ttl-2)/ttl*len/2)) % 100 / 100,
+                                          //   ),
+                                          // ) : null,
+                                          mode == WearMode.ambient ? Positioned(
+                                            left: cos((percentageHour - 0.25) * 2 * pi) * ((ttl - 2) / ttl * len / 2 - 8) + ((ttl - 2) / ttl * len) / 2 - 4,
+                                            top: sin((percentageHour - 0.25) * 2 * pi) * ((ttl - 2) / ttl * len / 2 - 8) + ((ttl - 2) / ttl * len) / 2 - 4,
+                                            child: Container(
+                                              width: 4 * strokeWidth,
+                                              height: 4 * strokeWidth,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(50),
+                                                color: const Color.fromARGB(255, 0, 0, 255),
+                                              ),
+                                            ),
+                                          ) : Positioned.fill(
                                             child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                              strokeWidth: strokeWidth,
                                               color: const Color.fromARGB(255, 0, 0, 255),
                                               value: percentageHour,
                                             ),
                                           ),
-                                          mode == WearMode.ambient ? Positioned.fill(
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
-                                              color: Colors.black,
-                                              value: (percentageHour * 100 - len/(pi*(ttl-2)/ttl*len/2)) % 100 / 100,
-                                            ),
-                                          ) : null,
                                         ].whereType<Widget>().toList(),
                                       )
                                   ),
@@ -247,27 +299,45 @@ class _MyApp2 extends State<MyApp2> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: (ttl-3)/ttl * len,
-                                  height: (ttl-3)/ttl * len,
+                                  width: (ttl-3)/ttl * len + 4 * strokeWidth,
+                                  height: (ttl-3)/ttl * len + 4 * strokeWidth,
                                   child: SizedBox(
-                                    width: (ttl-3)/ttl * len,
-                                    height: (ttl-3)/ttl * len,
+                                    width: (ttl-3)/ttl * len + 4 * strokeWidth,
+                                    height: (ttl-3)/ttl * len + 4 * strokeWidth,
                                       child: Stack(
                                         children: <Widget?>[
-                                          Positioned.fill(
+                                          // Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                          //     color: const Color.fromARGB(255, 0, 255, 255),
+                                          //     value: percentageDay,
+                                          //   ),
+                                          // ),
+                                          // mode == WearMode.ambient ? Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
+                                          //     color: Colors.black,
+                                          //     value: (percentageDay * 100 - len/(pi*(ttl-3)/ttl*len/2)) % 100 / 100,
+                                          //   ),
+                                          // ) : null,
+                                          mode == WearMode.ambient ? Positioned(
+                                            left: cos((percentageDay - 0.25) * 2 * pi) * ((ttl - 3) / ttl * len / 2) + ((ttl - 3) / ttl * len) / 2,
+                                            top: sin((percentageDay - 0.25) * 2 * pi) * ((ttl - 3) / ttl * len / 2) + ((ttl - 3) / ttl * len) / 2,
+                                            child: Container(
+                                              width: 4 * strokeWidth,
+                                              height: 4 * strokeWidth,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(50),
+                                                color: const Color.fromARGB(255, 0, 255, 255),
+                                              ),
+                                            ),
+                                          ) : Positioned.fill(
                                             child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                              strokeWidth: strokeWidth,
                                               color: const Color.fromARGB(255, 0, 255, 255),
                                               value: percentageDay,
                                             ),
                                           ),
-                                          mode == WearMode.ambient ? Positioned.fill(
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
-                                              color: Colors.black,
-                                              value: (percentageDay * 100 - len/(pi*(ttl-3)/ttl*len/2)) % 100 / 100,
-                                            ),
-                                          ) : null,
                                         ].whereType<Widget>().toList(),
                                       )
                                   ),
@@ -275,27 +345,45 @@ class _MyApp2 extends State<MyApp2> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: (ttl-4)/ttl * len,
-                                  height: (ttl-4)/ttl * len,
+                                  width: (ttl-4)/ttl * len + 4 * strokeWidth,
+                                  height: (ttl-4)/ttl * len + 4 * strokeWidth,
                                   child: SizedBox(
-                                    width: (ttl-4)/ttl * len,
-                                    height: (ttl-4)/ttl * len,
+                                    width: (ttl-4)/ttl * len + 4 * strokeWidth,
+                                    height: (ttl-4)/ttl * len + 4 * strokeWidth,
                                       child: Stack(
                                         children: <Widget?>[
-                                          Positioned.fill(
+                                          // Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                          //     color: const Color.fromARGB(255, 0, 255, 0),
+                                          //     value: percentageWeek,
+                                          //   ),
+                                          // ),
+                                          // mode == WearMode.ambient ? Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
+                                          //     color: Colors.black,
+                                          //     value: (percentageWeek * 100 - len/(pi*(ttl-4)/ttl*len/2)) % 100 / 100,
+                                          //   ),
+                                          // ) : null,
+                                          mode == WearMode.ambient ? Positioned(
+                                            left: cos((percentageWeek - 0.25) * 2 * pi) * ((ttl - 4) / ttl * len / 2) + ((ttl - 4) / ttl * len) / 2,
+                                            top: sin((percentageWeek - 0.25) * 2 * pi) * ((ttl - 4) / ttl * len / 2) + ((ttl - 4) / ttl * len) / 2,
+                                            child: Container(
+                                              width: 4 * strokeWidth,
+                                              height: 4 * strokeWidth,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(50),
+                                                color: const Color.fromARGB(255, 0, 255, 0),
+                                              ),
+                                            ),
+                                          ) : Positioned.fill(
                                             child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                              strokeWidth: strokeWidth,
                                               color: const Color.fromARGB(255, 0, 255, 0),
                                               value: percentageWeek,
                                             ),
                                           ),
-                                          mode == WearMode.ambient ? Positioned.fill(
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
-                                              color: Colors.black,
-                                              value: (percentageWeek * 100 - len/(pi*(ttl-4)/ttl*len/2)) % 100 / 100,
-                                            ),
-                                          ) : null,
                                         ].whereType<Widget>().toList(),
                                       )
                                   ),
@@ -303,27 +391,45 @@ class _MyApp2 extends State<MyApp2> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: (ttl-5)/ttl * len,
-                                  height: (ttl-5)/ttl * len,
+                                  width: (ttl-5)/ttl * len + 4 * strokeWidth,
+                                  height: (ttl-5)/ttl * len + 4 * strokeWidth,
                                   child: SizedBox(
-                                    width: (ttl-5)/ttl * len,
-                                    height: (ttl-5)/ttl * len,
+                                    width: (ttl-5)/ttl * len + 4 * strokeWidth,
+                                    height: (ttl-5)/ttl * len + 4 * strokeWidth,
                                       child: Stack(
                                         children: <Widget?>[
-                                          Positioned.fill(
+                                          // Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                          //     color: const Color.fromARGB(255, 255, 255, 0),
+                                          //     value: percentageMonth,
+                                          //   ),
+                                          // ),
+                                          // mode == WearMode.ambient ? Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
+                                          //     color: Colors.black,
+                                          //     value: (percentageMonth * 100 - len/(pi*(ttl-5)/ttl*len/2)) % 100 / 100,
+                                          //   ),
+                                          // ) : null,
+                                          mode == WearMode.ambient ? Positioned(
+                                            left: cos((percentageMonth - 0.25) * 2 * pi) * ((ttl - 5) / ttl * len / 2) + ((ttl - 5) / ttl * len) / 2,
+                                            top: sin((percentageMonth - 0.25) * 2 * pi) * ((ttl - 5) / ttl * len / 2) + ((ttl - 5) / ttl * len) / 2,
+                                            child: Container(
+                                              width: 4 * strokeWidth,
+                                              height: 4 * strokeWidth,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(50),
+                                                color: const Color.fromARGB(255, 255, 255, 0),
+                                              ),
+                                            ),
+                                          ) : Positioned.fill(
                                             child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                              strokeWidth: strokeWidth,
                                               color: const Color.fromARGB(255, 255, 255, 0),
                                               value: percentageMonth,
                                             ),
                                           ),
-                                          mode == WearMode.ambient ? Positioned.fill(
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
-                                              color: Colors.black,
-                                              value: (percentageMonth * 100 - len/(pi*(ttl-5)/ttl*len/2)) % 100 / 100,
-                                            ),
-                                          ) : null,
                                         ].whereType<Widget>().toList(),
                                       )
                                   ),
@@ -331,33 +437,62 @@ class _MyApp2 extends State<MyApp2> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: (ttl-6)/ttl * len,
-                                  height: (ttl-6)/ttl * len,
+                                  width: (ttl-6)/ttl * len + 4 * strokeWidth,
+                                  height: (ttl-6)/ttl * len + 4 * strokeWidth,
                                   child: SizedBox(
-                                    width: (ttl-6)/ttl * len,
-                                    height: (ttl-6)/ttl * len,
+                                    width: (ttl-6)/ttl * len + 4 * strokeWidth,
+                                    height: (ttl-6)/ttl * len + 4 * strokeWidth,
                                       child: Stack(
                                         children: <Widget?>[
-                                          Positioned.fill(
+                                          // Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                          //     color: const Color.fromARGB(255, 255, 0, 0),
+                                          //     value: percentageYear,
+                                          //   ),
+                                          // ),
+                                          // mode == WearMode.ambient ? Positioned.fill(
+                                          //   child: CircularProgressIndicator(
+                                          //     strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
+                                          //     color: Colors.black,
+                                          //     value: (percentageYear * 100 - len/(pi*(ttl-6)/ttl*len/2)) % 100 / 100,
+                                          //   ),
+                                          // ) : null,
+                                          mode == WearMode.ambient ? Positioned(
+                                            left: cos((percentageYear - 0.25) * 2 * pi) * ((ttl - 6) / ttl * len / 2) + ((ttl - 6) / ttl * len) / 2,
+                                            top: sin((percentageYear - 0.25) * 2 * pi) * ((ttl - 6) / ttl * len / 2) + ((ttl - 6) / ttl * len) / 2,
+                                            child: Container(
+                                              width: 4 * strokeWidth,
+                                              height: 4 * strokeWidth,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(50),
+                                                color: const Color.fromARGB(255, 255, 0, 0),
+                                              ),
+                                            ),
+                                          ) : Positioned.fill(
                                             child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1),
+                                              strokeWidth: strokeWidth,
                                               color: const Color.fromARGB(255, 255, 0, 0),
                                               value: percentageYear,
                                             ),
                                           ),
-                                          mode == WearMode.ambient ? Positioned.fill(
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: strokeWidth * (mode == WearMode.ambient ? 2 : 1) * 1.2,
-                                              color: Colors.black,
-                                              value: (percentageYear * 100 - len/(pi*(ttl-6)/ttl*len/2)) % 100 / 100,
-                                            ),
-                                          ) : null,
                                         ].whereType<Widget>().toList(),
                                       )
                                   ),
                                 ),
                               ),
-                            ].sublist(0, ttl),
+                              Center(
+                                child: Container(
+                                  // color: Colors.white,
+                                  width: strokeWidth,
+                                  height: strokeWidth,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(50)
+                                  ),
+                                ),
+                              )
+                            ].sublist(0, ttl + 1),
                           ),
                         ),
                         Visibility(
